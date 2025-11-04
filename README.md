@@ -10,6 +10,8 @@ AppHub provides an engaging user interface where users can:
 - Visualize ratings with interactive Recharts bar graphs.
 - Enjoy smooth loading animations and real-time toast feedback.
 
+### Live site : https://appsonic.netlify.app/
+
 ### 🧰 Tech Stack
 - React (Vite Setup)
 - React Router
