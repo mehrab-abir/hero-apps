@@ -19,7 +19,6 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 
 const AppDetails = () => {
   const { id } = useParams();
-  // console.log(id)
 
   const [apps, loading] = useAppData();
   const [isInstalled, setIsInstalled] = useState(false);
@@ -78,12 +77,12 @@ const AppDetails = () => {
       installApp(currentApp.id);
       setIsInstalled(true);
 
-      toast.success("App Installed", {
-        position: "top-right",
+      toast.success("App Installed!", {
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
-        pauseOnHover: true,
+        pauseOnHover: false,
         draggable: true,
         progress: undefined,
         theme: "colored",
@@ -163,7 +162,7 @@ const AppDetails = () => {
         </div>
       </div>
       <ToastContainer
-        position="top-right"
+        position="top-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

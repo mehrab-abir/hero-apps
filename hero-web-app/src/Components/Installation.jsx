@@ -4,6 +4,7 @@ import useAppData from "../Hooks/useAppData";
 import { PiDownloadSimple } from "react-icons/pi";
 import { FaStar } from "react-icons/fa6";
 import { BallTriangle } from "react-loader-spinner";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 const Installation = () => {
   const [installedApps, setInstalledApps] = useState([]);
@@ -39,6 +40,18 @@ const Installation = () => {
     uninstallApp(id);
 
     setInstalledApps((prev) => prev.filter((app) => app.id !== id));
+
+    toast("App Uninstalled!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
   };
 
   const handleSorting = (sortType) => {
@@ -56,6 +69,13 @@ const Installation = () => {
       setInstalledApps(sortedApps);
     }
   };
+
+  const noInstalledApps = (
+    <div className="h-screen flex flex-col items-center mt-20 text-center">
+      <h1 className="text-3xl font-bold text-purple-500">-No App is installed yet-</h1>
+      <p className="text-gray-500">Installed Apps will appear here.</p>
+    </div>
+  );
 
   return (
     <div className="bg-gray-100 py-9">
@@ -78,56 +98,79 @@ const Installation = () => {
               tabIndex="-1"
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-46 p-2 shadow-sm"
             >
-              <li onClick={()=>{
-                handleSorting("asc");
-                document.activeElement.blur();
-              }} className="cursor-pointer py-2 text-lg border-b border-gray-300 hover:text-emerald-600">
+              <li
+                onClick={() => {
+                  handleSorting("asc");
+                  document.activeElement.blur();
+                }}
+                className="cursor-pointer py-2 text-lg border-b border-gray-300 hover:text-emerald-600"
+              >
                 Low -&gt; High
               </li>
-              <li onClick={()=>{
-                handleSorting("desc");
-                document.activeElement.blur();
-              }} className="cursor-pointer py-2 text-lg hover:text-emerald-600">
+              <li
+                onClick={() => {
+                  handleSorting("desc");
+                  document.activeElement.blur();
+                }}
+                className="cursor-pointer py-2 text-lg hover:text-emerald-600"
+              >
                 High -&gt; Low
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col space-y-3 mt-5">
-          {installedApps.map((app) => {
-            return (
-              <div
-                key={app.id}
-                className="flex items-center justify-between p-2 bg-white shadow-sm"
-              >
-                <div className="flex gap-4">
-                  <img src={app.image} alt="" className="w-20 rounded-md" />
-                  <div>
-                    <h1 className="text-lg font-bold">{app.title}</h1>
-                    <div className="flex gap-4 item-center mt-3">
-                      <div className="flex items-center text-green-500">
-                        <PiDownloadSimple /> <span>{app.downloads}</span>
+        {installedApps.length > 0 ? (
+          <div className="flex flex-col space-y-3 mt-5">
+            {installedApps.map((app) => {
+              return (
+                <div
+                  key={app.id}
+                  className="flex items-center justify-between p-2 bg-white shadow-sm"
+                >
+                  <div className="flex gap-4">
+                    <img src={app.image} alt="" className="w-20 rounded-md" />
+                    <div>
+                      <h1 className="text-lg font-bold">{app.title}</h1>
+                      <div className="flex gap-4 item-center mt-3">
+                        <div className="flex items-center text-green-500">
+                          <PiDownloadSimple /> <span>{app.downloads}</span>
+                        </div>
+                        <div className="flex items-center text-orange-400">
+                          <FaStar />
+                          <span>{app.ratingAvg}</span>
+                        </div>
+                        <span className="text-gray-500">{app.size} MB</span>
                       </div>
-                      <div className="flex items-center text-orange-400">
-                        <FaStar />
-                        <span>{app.ratingAvg}</span>
-                      </div>
-                      <span className="text-gray-500">{app.size} MB</span>
                     </div>
                   </div>
+                  <button
+                    onClick={() => unInstall(app.id)}
+                    className="btn bg-emerald-600 text-white"
+                  >
+                    Uninstall
+                  </button>
                 </div>
-                <button
-                  onClick={() => unInstall(app.id)}
-                  className="btn bg-emerald-600 text-white"
-                >
-                  Uninstall
-                </button>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        ) : (
+          noInstalledApps
+        )}
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={true}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </div>
   );
 };
