@@ -6,9 +6,9 @@ import { Link } from "react-router";
 
 const Banner = () => {
   return (
-    <div className="pt-12 bg-gray-100">
+    <div className="pt-8 bg-gray-100">
       <div className="w-[90%] mx-auto flex flex-col items-center justify-center">
-        <h1 className="text-6xl font-bold text-center">
+        <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-center">
           We Build
           <br />{" "}
           <span className="bg-linear-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent">

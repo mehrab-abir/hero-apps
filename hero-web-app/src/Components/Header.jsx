@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../assets/logo.png";
+import { FaGithub } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm fixed w-full">
+    <div className="navbar bg-base-100 shadow-sm fixed w-full z-50">
       <div className="w-[90%] mx-auto flex justify-between items-center">
         <div className="navbar-start">
           <div className="dropdown">
@@ -67,7 +68,7 @@ const Header = () => {
 
         <div className="navbar-end">
           <Link to='https://github.com/mehrab-abir' target="blank" className="btn border-none text-white bg-linear-to-r from-[#632EE3] to-[#9F62F2] hover:shadow-lg transition-all">
-            Contribute
+            <FaGithub className="text-xl" /> Contribute
           </Link>
         </div>
       </div>
