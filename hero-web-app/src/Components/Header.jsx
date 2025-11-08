@@ -8,7 +8,7 @@ const Header = () => {
     <div className="navbar bg-base-100 shadow-sm fixed w-full z-50">
       <div className="w-[90%] mx-auto flex justify-between items-center">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown mt-1">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +44,9 @@ const Header = () => {
             </ul>
           </div>
           {/* logo  */}
-          <Link to="/" className="flex">
-            <img src={logo} alt="" className="w-12" />
-            <h1 className="text-4xl font-bold bg-linear-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent">
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="" className="hidden md:flex w-12" />
+            <h1 className="text-2xl md:text-4xl font-bold bg-linear-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent">
               AppSonic
             </h1>
           </Link>
