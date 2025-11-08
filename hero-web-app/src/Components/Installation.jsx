@@ -134,10 +134,10 @@ const Installation = () => {
                   className="flex items-center justify-between p-2 bg-white shadow-sm"
                 >
                   <div className="flex gap-4">
-                    <img src={app.image} alt="" className="w-20 rounded-md" />
+                    <img src={app.image} alt="" className="w-24 sm:w-20 rounded-md" />
                     <div>
                       <h1 className="text-lg font-bold">{app.title}</h1>
-                      <div className="flex gap-4 item-center mt-3">
+                      <div className="flex gap-4 item-center mt-3 flex-wrap">
                         <div className="flex items-center text-green-500">
                           <PiDownloadSimple /> <span>{app.downloads}</span>
                         </div>
